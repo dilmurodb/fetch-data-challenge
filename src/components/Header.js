@@ -1,21 +1,11 @@
 import React from 'react'
-import Section from './Section'
 
-const Header = ({ handleClick, users, posts, comments }) => {
+const Header = ({ handleClick, users, posts, comments, usersClicked, postsClicked, commentsClicked }) => {
   return (
     <header>
-        <Section 
-            title={users}
-            handleClick={handleClick} 
-        />
-        <Section 
-            title={posts}
-            handleClick={handleClick} 
-        />
-        <Section 
-            title={comments}
-            handleClick={handleClick} 
-        />
+        {usersClicked ? (<section style={{backgroundColor: 'black', color: 'white'}} onClick={(e) => handleClick(e.target.innerText)}>{users}</section>) : (<section style={{backgroundColor: 'grey', color: 'black'}} onClick={(e) => handleClick(e.target.innerText)}>{users}</section>)}
+        {postsClicked ? (<section style={{backgroundColor: 'black', color: 'white'}} onClick={(e) => handleClick(e.target.innerText)}>{posts}</section>) : (<section style={{backgroundColor: 'grey', color: 'black'}} onClick={(e) => handleClick(e.target.innerText)}>{posts}</section>)}
+        {commentsClicked ? (<section style={{backgroundColor: 'black', color: 'white'}} onClick={(e) => handleClick(e.target.innerText)}>{comments}</section>) : (<section style={{backgroundColor: 'grey', color: 'black'}} onClick={(e) => handleClick(e.target.innerText)}>{comments}</section>)}
     </header>
   )
 }

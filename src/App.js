@@ -20,6 +20,7 @@ function App() {
   const [commentsClicked, setCommentsClicked] = useState(false)
 
 
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -70,6 +71,9 @@ function App() {
           users='users'
           posts='posts'
           comments='comments'
+          usersClicked={usersClicked}
+          postsClicked={postsClicked}
+          commentsClicked={commentsClicked}
       />
       <main>
         {isLoading ? (<h2 style={{color: 'green'}}>The App is loading...</h2>) : null}
