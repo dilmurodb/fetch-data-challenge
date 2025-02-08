@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react'
 import Header from './components/Header';
 import Main from './components/Main';
+import Table from './components/Table';
 
 function App() {
 
@@ -78,14 +79,22 @@ function App() {
       <main>
         {isLoading ? (<h2 style={{color: 'green'}}>The App is loading...</h2>) : null}
         {fetchError ? (<h3 style={{color: 'red'}}>{fetchError}</h3>) : null}
-        {!isLoading && !fetchError && (<Main 
+        {/* {!isLoading && !fetchError && (<Main 
             users={users}
             posts={posts}
             comments={comments}
             usersClicked={usersClicked}
             postsClicked={postsClicked}
             commentsClicked={commentsClicked}
-        />)}
+        />)} */}
+        <Table
+            users={users}
+            posts={posts}
+            comments={comments}
+            usersClicked={usersClicked}
+            postsClicked={postsClicked}
+            commentsClicked={commentsClicked}
+        />
       </main>
     </div>
   );
