@@ -1,10 +1,10 @@
 import React from 'react'
 import ListItem from './ListItem'
 
-const Main = ({ dataArr }) => {
+const Main = ({ users }) => {
   return (
     <main>
-        <ul>{dataArr.map(item => (<ListItem key={item.id} item={item}/>))}</ul>
+        <ul>{users.map(item => (<ListItem key={item.id} item={item}/>))}</ul>
     </main>
   )
 }

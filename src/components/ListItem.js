@@ -1,8 +1,9 @@
 import React from 'react'
 
 const ListItem = ({ item }) => {
+    const stringifiedItem = JSON.stringify(item)
   return (
-    <li>{item.title}</li>
+    <li>{stringifiedItem }</li>
   )
 }
 

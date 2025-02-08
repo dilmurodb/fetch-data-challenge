@@ -1,30 +1,38 @@
 import './App.css';
+import { useState, useEffect } from 'react'
 import Header from './components/Header';
 import Main from './components/Main';
 
 function App() {
 
-  const API_URL = 'https://jsonplaceholder.typicode.com/'
+  const USERS_API_URL = 'https://jsonplaceholder.typicode.com/users'
+  const POSTS_API_URL = 'https://jsonplaceholder.typicode.com/posts'
+  const COMMENTS_API_URL = 'https://jsonplaceholder.typicode.com/comments'
 
-  const dataArr = [
-    {
-      "userId": 1,
-      "id": 1,
-      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-    },
-    {
-      "userId": 1,
-      "id": 2,
-      "title": "qui est esse",
-      "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
-    },
-    {
-      "userId": 1,
-      "id": 3,
-      "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
-      "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
-    }]
+  const [users, setUsers] = useState([])
+  const [fetchError, setFetchError] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(USERS_API_URL)
+        if (!response.ok) throw Error('Did not receive expected data')
+        const listUsers = await response.json()
+      console.log(listUsers)
+        setUsers(listUsers)
+        setFetchError(null)
+
+      } catch (err) {
+        setFetchError(err.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchItems()
+  }, [])
+    
 
   const handleClick = (e) => {
     console.log(e)
@@ -39,7 +47,7 @@ function App() {
           comments='comments'
       />
       <Main 
-          dataArr={dataArr}
+          users={users}
       />
     </div>
   );
